@@ -26,16 +26,21 @@ if(isset($_POST['year']) && isset($_POST['period'])){
   $year=$_POST['year'];
   $period=$_POST['period'];
   $get_post=$pdo->query("SELECT * FROM `award_number` WHERE `year`='$year' && `period`='$period'")->fetch();
-  
-  }else if(isset($_GET['pd'])){
+}else if(isset($_GET['pd'])){
   $year=explode('-',$_GET['pd'])[0];
   $period=explode('-',$_GET['pd'])[1];
-
-  }else{
-    $year=date("Y");
-    $period=(ceil(date("n")/2))-1;
-    $get_new=$pdo->query("SELECT * FROM `award_number` WHERE `year`='$year' && `period`='$period'")->fetch();
-  }
+}else{
+  $year=date("Y");
+  $period=(ceil(date("n")/2))-1;
+  $get_new=$pdo->query("SELECT * FROM `award_number` WHERE `year`='$year' && `period`='$period'")->fetch();
+  // if(empty($get_new)){
+  //   echo "<table class='table table-sm'>";
+  //   echo "<h1 style='text-align:center'>".$year."年 第".($period+1)."期 尚未開獎</h1>";
+  //   echo "</table>";
+  // }else{
+    
+  // }
+}
 
 
 $award=$pdo->query("SELECT * FROM `award_number` WHERE `year`='$year' && `period`='$period'")->fetchALL();
@@ -69,17 +74,30 @@ foreach($award as $aw){
     <tr> 
       <th id="month">年月份</th> 
       <td headers="month" class="title">
-      <div class="ym"><?=$year;?>年
+      <?php
+        if($period<1){
+          echo "<div class='ym'>";
+        }else{
+          echo "<div class='ym'>".$year."年";
+        }
+      ?>
       <?php
       $month=[
+        0=>"no award",
         1=>"01~02",
         2=>"03~04",
         3=>"05~06",
         4=>"07~08",
         5=>"09~10",
         6=>"11~12"];
-      echo $month[$period];
-      ?>月
+      if($period<1){
+        echo "<table class='table table-sm'>";
+        echo "<h1 style='text-align:center'>".$year."年 第".($period+1)."期 尚未開獎</h1>";
+        echo "</table>";
+      }else{
+        echo $month[$period]."月";
+      }
+      ?>
       </div>
       </td>
     </tr>

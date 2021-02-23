@@ -32,7 +32,7 @@ include_once "base.php";
 if(isset($_POST['year']) && isset($_POST['period'])){
   $year=$_POST['year'];
   $period=$_POST['period'];
-  $sql="SELECT * FROM `invoice` WHERE year(`date`)='$year' && `period`='$period' ORDER BY DATE";
+  $sql="SELECT * FROM `invoice` WHERE year(`day`)='$year' && `period`='$period' ORDER BY DATE";
 }else{
 $sql="SELECT * FROM `invoice` ORDER BY DATE";
 }
@@ -66,7 +66,7 @@ foreach($rows as $row){
   <th scope="row"></th>
     <td class="text-center"><?=$row['code'].$row['number'];?></td>
     <td class="text-center"><?=$row['payment'];?></td>
-    <td class="text-center"><?=$row['date'];?></td>
+    <td class="text-center"><?=$row['day'];?></td>
     <td class="text-center"><?=$row['text'];?></td>
     <td class="text-center">
       <button class="btn btn-sm btn-secondary">

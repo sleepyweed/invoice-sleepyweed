@@ -13,7 +13,7 @@ $inv=$pdo->query($sql)->fetch();
 發票號碼：<div class="form-control"><input type="text" name="code" value="<?=$inv['code'];?>"></div>
         <div class="form-control"><input type="text" name="number" value="<?=$inv['number'];?>"></div>
 發票金額：<div class="form-control"><input type="text" name="payment" value="<?=$inv['payment'];?>"></div>
-消費日期：<div class="form-control"><input type="text" name="date" value="<?=$inv['date'];?>"></div>
+消費日期：<div class="form-control"><input type="text" name="date" value="<?=$inv['day'];?>"></div>
 消費明細：<div class="form-control"><input type="text" name="text" value="<?=$inv['text'];?>"></div>
 <button type="submit" class="btn btn-primary">提交</button>
 <button type="reset" class="btn btn-info">重置</button>

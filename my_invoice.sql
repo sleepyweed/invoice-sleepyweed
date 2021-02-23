@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2020 年 12 月 06 日 16:26
+-- 產生時間： 2021 年 02 月 23 日 02:37
 -- 伺服器版本： 10.4.16-MariaDB
 -- PHP 版本： 7.4.12
 
@@ -71,7 +71,18 @@ INSERT INTO `award_number` (`id`, `year`, `period`, `number`, `type`) VALUES
 (29, 2020, 5, '84643124', 3),
 (30, 2020, 5, '46665810', 3),
 (31, 2020, 5, '651', 4),
-(32, 2020, 5, '341', 4);
+(32, 2020, 5, '341', 4),
+(33, 2019, 1, '11111111', 1),
+(34, 2019, 1, '11111111', 2),
+(35, 2019, 1, '11111111', 3),
+(36, 2019, 1, '11111111', 3),
+(37, 2019, 1, '111', 4),
+(38, 2019, 1, '111', 4),
+(39, 2019, 1, '111', 4),
+(40, 2018, 4, '2222', 1),
+(41, 2018, 4, '2222', 2),
+(42, 2018, 4, '2222', 3),
+(43, 2018, 4, '222', 4);
 
 -- --------------------------------------------------------
 
@@ -85,16 +96,16 @@ CREATE TABLE `invoice` (
   `number` varchar(8) NOT NULL,
   `payment` int(6) UNSIGNED NOT NULL,
   `period` tinyint(1) UNSIGNED NOT NULL,
-  `date` date NOT NULL,
+  `day` date NOT NULL,
   `text` text NOT NULL,
-  `create_time` datetime NOT NULL DEFAULT current_timestamp()
+  `create_time` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `invoice`
 --
 
-INSERT INTO `invoice` (`id`, `code`, `number`, `payment`, `period`, `date`, `text`, `create_time`) VALUES
+INSERT INTO `invoice` (`id`, `code`, `number`, `payment`, `period`, `day`, `text`, `create_time`) VALUES
 (1, 'AA', '12341234', 80, 5, '2020-09-03', '便當', '2020-12-06 13:45:07'),
 (2, 'LL', '99995555', 700, 5, '2020-10-03', '水壺', '2020-12-06 14:22:51'),
 (3, 'IH', '28928213', 7462, 6, '2020-11-05', '洗髮精', '2020-12-06 14:37:08'),
@@ -220,17 +231,17 @@ CREATE TABLE `login` (
   `id` int(11) UNSIGNED NOT NULL,
   `acc` varchar(16) NOT NULL,
   `pw` varchar(64) NOT NULL,
-  `email` varchar(32) NOT NULL,
-  `create_time` timestamp NOT NULL DEFAULT current_timestamp()
+  `email` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `login`
 --
 
-INSERT INTO `login` (`id`, `acc`, `pw`, `email`, `create_time`) VALUES
-(1, 'sleepy', '0115', 'sleepy@gmail.com', '2020-12-06 13:43:27'),
-(2, 'hello', '0000', 'hello@gmail.com', '2020-12-06 13:44:26');
+INSERT INTO `login` (`id`, `acc`, `pw`, `email`) VALUES
+(1, 'sleepy', '0115', 'sleepy@gmail.com'),
+(2, 'hello', '0000', 'hello@gmail.com'),
+(3, 'admin', '1234', 'admin@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -251,8 +262,9 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`id`, `name`, `role`, `education`, `login_id`) VALUES
-(1, 'sleepy', '管理員', '大學/專科', 1),
-(2, 'hello', '會員', '高中', 2);
+(1, 'sleepy', '會員', '大學/專科', 1),
+(2, 'hello', '會員', '高中', 2),
+(3, 'admin', '管理員', '國中', 3);
 
 --
 -- 已傾印資料表的索引
@@ -290,7 +302,7 @@ ALTER TABLE `member`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `award_number`
 --
 ALTER TABLE `award_number`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `invoice`
@@ -302,13 +314,13 @@ ALTER TABLE `invoice`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -10,7 +10,7 @@ $inv=$pdo->query($sql)->fetch();
     <ul>
       <li>發票號碼：<?=$inv['code'].$inv['number'];?></li>
       <li>發票金額：<?=$inv['payment'];?></li>
-      <li>消費日期：<?=$inv['date'];?></li>
+      <li>消費日期：<?=$inv['day'];?></li>
     </ul>
     <div class="text-center mt-4">
       <button class="btn btn-info">

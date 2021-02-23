@@ -3,7 +3,7 @@ include_once "../base.php";
 
 $sql="UPDATE `invoice` 
       SET `code`='{$_POST['code']}',`number`='{$_POST['number']}',
-      `payment`='{$_POST['payment']}',`date`='{$_POST['date']}',`text`='{$_POST['text']}'
+      `payment`='{$_POST['payment']}',`day`='{$_POST['date']}',`text`='{$_POST['text']}'
       WHERE `id`='{$_POST['id']}'";
 
 $pdo->exec($sql);
